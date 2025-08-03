@@ -13,7 +13,6 @@ const DisplayMain = () => {
   const [search, setSearch] = useState("");
   const [coinData, setCoinData] = useState([]);
   const [displayCoin, setDisplayCoin] = useState([]);
-  //   const [result, setResults] = useState([]);
   const [displayCoinSum, setDisplayCoinSum] = useState([]);
 
   const updateSearch = (event) => {
@@ -25,7 +24,6 @@ const DisplayMain = () => {
       return item.pair.toLowerCase().includes(search.toLowerCase());
     });
     setDisplayCoin(result);
-    // setResults(result);
     setSearch("");
   };
 
