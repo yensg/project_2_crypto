@@ -31,7 +31,7 @@
 
 ## App Development
 
-![[asset/InitialLayout.png]]
+![Initial Layout](asset/InitialLayout.png)
 
 ### Initial outlook
 
