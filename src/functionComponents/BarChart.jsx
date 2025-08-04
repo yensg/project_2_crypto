@@ -18,7 +18,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import { barChartData } from "../featureComponents/dataset";
+import { barChartData } from "./dataset";
 const BarChart = () => {
   const options = {};
   return <Bar options={options} data={barChartData} />;

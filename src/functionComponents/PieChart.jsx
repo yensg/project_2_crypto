@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-import { pieChartData } from "../featureComponents/dataset";
+import { pieChartData } from "./dataset";
 
 const PieChart = () => {
   const options = {};

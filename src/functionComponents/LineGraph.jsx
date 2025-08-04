@@ -20,7 +20,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import { lineChartData } from "../featureComponents/dataset";
+import { lineChartData } from "./dataset";
 
 const LineGraph = (props) => {
   const options = {
