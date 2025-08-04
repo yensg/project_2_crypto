@@ -3,6 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import DisplayFavCoin from "./DisplayFavCoin";
 import BootstrapContext from "../context/bootstrap-context";
 import Button from "../functionComponents/Button";
+import DisplayGraph from "./DisplayGraph";
 
 const DisplayFav = () => {
   const { blue, green, red, orange, lightblue, white } =
@@ -62,6 +63,7 @@ const DisplayFav = () => {
   return (
     <>
       <h4>Portfolio Assumption</h4>
+      <div className={`${red}`}></div>
       <div className="container">
         <div className={`d-flex  ${lightblue} align-items-baseline`}>
           <label>Symbol: </label>
@@ -136,6 +138,7 @@ const DisplayFav = () => {
             );
           })}
       </div>
+      <DisplayGraph />
     </>
   );
 };
