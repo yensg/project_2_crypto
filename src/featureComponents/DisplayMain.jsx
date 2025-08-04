@@ -5,6 +5,8 @@ import DisplayCoin from "./DisplayCoin";
 import BootstrapContext from "../context/bootstrap-context";
 import "../main.css";
 import DisplayCoinSum from "./DisplayCoinSum";
+import coinContext from "../context/coin-context";
+import DisplayFav from "./DisplayFav";
 
 const DisplayMain = () => {
   const { blue, green, red, orange, lightblue, white } =
@@ -148,6 +150,11 @@ const DisplayMain = () => {
           })}
         </div>
       </div>
+      {query.isSuccess && (
+        <coinContext.Provider value={coinData}>
+          <DisplayFav />
+        </coinContext.Provider>
+      )}
     </>
   );
 };
