@@ -14,12 +14,19 @@ const Input = (props) => {
         value={props.value}
         onChange={props.inputFn}
         placeholder={props.children}
+        onKeyDown={props.handleKeyDown}
       />
       <button
-        className="col-sm-2 btn btn-light btn-sm"
+        className="col-sm-1 btn btn-light btn-sm"
         onClick={props.buttonFn}
       >
         Submit
+      </button>
+      <button
+        className="col-sm-1 btn btn-light btn-sm"
+        onClick={props.clickClear}
+      >
+        Clear
       </button>
     </div>
   );

@@ -30,7 +30,6 @@ const ModalFavCoin = (props) => {
     }
     return res.json();
   };
-
   const mutation = useMutation({
     mutationFn: updateData,
     onSuccess: () => {

@@ -29,6 +29,16 @@ const DisplayMain = () => {
     setSearch("");
   };
 
+  const clickClear = () => {
+    setDisplayCoin(coinData);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      clickSearch();
+    }
+  };
+
   const getCoinData = async () => {
     const res = await fetch(import.meta.env.VITE_SERVER + "/v1/pricefeed");
     if (!res.ok) {
@@ -36,12 +46,10 @@ const DisplayMain = () => {
     }
     return await res.json();
   };
-
   const query = useQuery({
     queryKey: ["coins"],
     queryFn: getCoinData,
   });
-
   useEffect(() => {
     if (query.isSuccess) {
       setCoinData(query.data);
@@ -116,7 +124,13 @@ const DisplayMain = () => {
   return (
     <>
       <div className="d-flex flex-column gap-2 p-2">
-        <Input inputFn={updateSearch} buttonFn={clickSearch} value={search}>
+        <Input
+          handleKeyDown={handleKeyDown}
+          inputFn={updateSearch}
+          buttonFn={clickSearch}
+          clickClear={clickClear}
+          value={search}
+        >
           Search
         </Input>
         {/* {JSON.stringify(result)} */}
@@ -150,11 +164,11 @@ const DisplayMain = () => {
           })}
         </div>
       </div>
-      {query.isSuccess && (
+      {/* {query.isSuccess && (
         <coinContext.Provider value={coinData}>
           <DisplayFav />
         </coinContext.Provider>
-      )}
+      )} */}
     </>
   );
 };

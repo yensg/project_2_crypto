@@ -25,7 +25,6 @@ const DisplayFav = () => {
     }
     return res.json();
   };
-
   const queryAirTable = useQuery({
     queryKey: ["airTable"],
     queryFn: getData,
@@ -51,7 +50,6 @@ const DisplayFav = () => {
     }
     return res.json();
   };
-
   const mutation = useMutation({
     mutationFn: addData,
     onSuccess: () => {
@@ -63,8 +61,38 @@ const DisplayFav = () => {
 
   return (
     <>
+      <h4>Portfolio Assumption</h4>
       <div className="container">
-        <div className={`d-flex  ${lightblue} justify-content-between`}>
+        <div className={`d-flex  ${lightblue} align-items-baseline`}>
+          <label>Symbol: </label>
+          <input
+            className="col-sm-1"
+            type="text"
+            ref={symbolRef}
+            placeholder="Symbol"
+          ></input>
+          <label>Quantity: </label>
+          <input
+            className="col-sm-1"
+            type="text"
+            ref={qtyRef}
+            placeholder="Qty"
+          ></input>
+          <label>Target Price: </label>
+          <input
+            className="col-sm-2"
+            type="text"
+            ref={targetEntryPriceRef}
+            placeholder="Target Entry Price"
+          ></input>
+          <Button buttonFn={mutation.mutate}>Add</Button>
+        </div>
+      </div>
+      <br />
+      <div className="container">
+        <div
+          className={`d-flex  ${lightblue} justify-content-between align-items-baseline`}
+        >
           <div className="col-sm-1">Symbol</div>
           <div className="col-sm-1">Qty</div>
           <div className="col-sm-2">Price</div>
@@ -74,7 +102,7 @@ const DisplayFav = () => {
           <Button>Update</Button>
           <Button>Delete</Button>
         </div>
-        <div className={`d-flex  ${lightblue} justify-content-between`}>
+        {/* <div className={`d-flex  ${lightblue} justify-content-between`}>
           <input
             className="col-sm-1"
             type="text"
@@ -98,9 +126,9 @@ const DisplayFav = () => {
           <div className="col-sm-2">Target Value</div>
           <Button buttonFn={mutation.mutate}>Add</Button>
           <div className="col-sm-1"></div>
-        </div>
+        </div> */}
       </div>
-      <div className={`container gap-2 ${white}`}>
+      <div className={`container gap-2`}>
         {queryAirTable.isSuccess &&
           queryAirTable.data.records.map((item) => {
             return (

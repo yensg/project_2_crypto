@@ -25,7 +25,6 @@ const DisplayFavCoin = (props) => {
       throw new Error("book deletion error");
     }
   };
-
   const mutation = useMutation({
     mutationFn: deleteData,
     onSuccess: () => {
@@ -43,7 +42,9 @@ const DisplayFavCoin = (props) => {
     <>
       {showModal && <Overlay updateShowModal={updateShowModal} id={props.id} />}
       {/* {JSON.stringify(coinData)} */}
-      <div className={`d-flex  ${lightblue} justify-content-between`}>
+      <div
+        className={`d-flex  ${lightblue} justify-content-between align-items-baseline`}
+      >
         <div className="col-sm-1">{props.fields.pair}</div>
         <div className="col-sm-1">{props.fields.qty}</div>
         <div className="col-sm-2">Price</div>

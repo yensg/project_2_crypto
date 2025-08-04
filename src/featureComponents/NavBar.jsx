@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <nav>
-      <div>
-        <div>
+      <div className="container d-flex">
+        <div className="col-sm-2">
           <Link to="main">Main</Link>
         </div>
         <div>
