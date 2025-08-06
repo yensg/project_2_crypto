@@ -22,7 +22,10 @@ function App() {
         value={{ blue, green, red, orange, lightblue, white }}
       >
         <div className="container p-3">
-          <NavBar />
+          <div className="d-flex justify-content-between align-items-center">
+            <NavBar />
+            <p className="m-0 fw-semibold text-end">Yen's Crypto Tracker</p>
+          </div>
           <div
             style={{
               backgroundColor: "#ebe6e0",

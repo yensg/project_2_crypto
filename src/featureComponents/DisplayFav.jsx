@@ -72,37 +72,72 @@ const DisplayFav = () => {
 
   return (
     <>
-      <h4>Portfolio Assumption</h4>
-      <div className={`${red}`}></div>
+      <h5 className="m-0 fw-semibold text-center">Portfolio Assumption</h5>
+
       <div className="container">
-        <div className={`d-flex  ${lightblue} align-items-baseline`}>
-          <label>Symbol: </label>
+        <div
+          className={`d-flex  align-items-baseline justify-content-between`}
+          style={{
+            backgroundColor: "#4c7766",
+            color: "#ebe6e0",
+            borderRadius: "8px",
+            padding: "5px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          <label className="me-2 mb-0 fw-semibold">Symbol: </label>
           <input
-            className="col-sm-1"
+            className="col-sm-2 "
+            style={{
+              backgroundColor: "#f4f0ec",
+              color: "#000",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
             type="text"
             ref={symbolRef}
             placeholder="Symbol"
           ></input>
-          <label>Quantity: </label>
+          <label className="me-2 mb-0 fw-semibold">Quantity: </label>
           <input
-            className="col-sm-1"
+            className="col-sm-2"
+            style={{
+              backgroundColor: "#f4f0ec",
+              color: "#000",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
             type="text"
             ref={qtyRef}
             placeholder="Qty"
           ></input>
-          <label>Target Price: </label>
+          <label className="me-2 mb-0 fw-semibold">Target Price: </label>
           <input
             className="col-sm-2"
+            style={{
+              backgroundColor: "#f4f0ec",
+              color: "#000",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            }}
             type="text"
             ref={targetEntryPriceRef}
-            placeholder="Target Entry Price"
+            placeholder="Target Price"
           ></input>
           <Button buttonFn={mutation.mutate}>Add</Button>
         </div>
       </div>
+      <br />
       <div className="container">
-        <label>Show Graph</label>
+        <label className="me-2 mb-0 fw-semibold">Price Trend</label>
         <select
+          className="col-sm-3"
+          style={{
+            backgroundColor: "#f4f0ec",
+            color: "#000",
+            border: "1px solid #ccc",
+            borderRadius: "5px",
+          }}
           onChange={(event) => {
             setSelectedPairToGraph(event.target.value);
           }}
@@ -119,6 +154,13 @@ const DisplayFav = () => {
       <div className="container">
         <div
           className={`d-flex  ${lightblue} justify-content-between align-items-baseline`}
+          style={{
+            backgroundColor: "#4c7766",
+            color: "#ebe6e0",
+            borderRadius: "8px",
+            padding: "5px",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+          }}
         >
           <div className="col-sm-1">Symbol</div>
           <div className="col-sm-1">Qty</div>

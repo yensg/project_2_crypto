@@ -120,7 +120,7 @@ const DisplayGraph = (props) => {
         {
           label: "Historical Price Trend",
           data: data,
-          borderColor: "rgb(75,192,192)",
+          borderColor: "#4c7766",
           tension: 0.4, // smooths the line
         },
       ],

@@ -10,7 +10,7 @@ const Button = (props) => {
     <>
       <button
         id="button"
-        className="col-sm-1 btn btn-sm"
+        className="col-sm-1 btn btn-sm btn-3d"
         style={{ backgroundColor: "#4c7766", color: "#ebe6e0" }}
         onClick={props.buttonFn}
       >

@@ -94,7 +94,12 @@ const DisplayFavCoin = (props) => {
     <>
       {showModal && <Overlay updateShowModal={updateShowModal} id={props.id} />}
       <div
-        className={`d-flex  ${lightblue} justify-content-between align-items-baseline`}
+        className={`d-flex  justify-content-between align-items-baseline`}
+        style={{
+          backgroundColor: "#ebe6e0",
+          color: "#4c7766",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+        }}
       >
         <div className="col-sm-1">{props.fields.pair}</div>
         <div className="col-sm-1">{props.fields.qty}</div>

@@ -13,11 +13,20 @@ const Input = (props) => {
         color: "#ebe6e0",
         borderRadius: "8px",
         padding: "5px",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
       }}
     >
-      <label className="col-sm-2">{props.children}:</label>
+      <label className="col-sm-2 me-2 mb-0 fw-semibold">
+        {props.children}:
+      </label>
       <input
         className="col-sm-6"
+        style={{
+          backgroundColor: "#f4f0ec",
+          color: "#000",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+        }}
         type="text"
         value={props.value}
         onChange={props.inputFn}
@@ -26,7 +35,7 @@ const Input = (props) => {
       />
       <div className="col-sm-1"></div>
       <button
-        className="col-sm-1 btn btn-sm d-flex justify-content-center align-items-center"
+        className="col-sm-1 btn btn-sm d-flex justify-content-center align-items-center btn-3d"
         style={{ backgroundColor: "#ebe6e0", color: "#4c7766" }}
         onClick={props.buttonFn}
       >
@@ -34,7 +43,7 @@ const Input = (props) => {
       </button>
 
       <button
-        className="col-sm-1 btn btn-sm d-flex justify-content-center align-items-center"
+        className="col-sm-1 btn btn-sm d-flex justify-content-center align-items-center btn-3d"
         style={{ backgroundColor: "#ebe6e0", color: "#4c7766" }}
         onClick={props.clickClear}
       >
