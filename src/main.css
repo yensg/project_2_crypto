@@ -1,17 +1,14 @@
 .scroll-white::-webkit-scrollbar {
   background-color: #ebe6e0;
-  color: #4c7766;
   width: 8px;
 }
 
 .scroll-white::-webkit-scrollbar-track {
   background-color: #ebe6e0;
-  color: #4c7766;
 }
 
 .scroll-white::-webkit-scrollbar-thumb {
-  background-color: #ebe6e0;
-  color: #4c7766;
+  background-color: #4c7766;
   border-radius: 5px;
 }
 

@@ -142,7 +142,7 @@ const DisplayMain = () => {
         <div
           className={`container d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white`}
           style={{
-            maxHeight: "500px",
+            maxHeight: "300px",
             backgroundColor: "#ebe6e0",
             color: "#4c7766",
             border: "1px solid #4c7766",
