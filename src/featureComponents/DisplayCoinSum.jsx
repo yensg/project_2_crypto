@@ -7,7 +7,10 @@ const DisplayCoinSum = (props) => {
     useContext(BootstrapContext);
 
   return (
-    <div className={`${green} p-2 rounded`}>
+    <div
+      className={`p-2 rounded`}
+      style={{ backgroundColor: "#f4f0ec", color: "#4c7766" }}
+    >
       <div>Symbol: {props.symbol}</div>
       <div>Open: ${props.open}</div>
       <div>High: ${props.high}</div>

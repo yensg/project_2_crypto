@@ -21,9 +21,17 @@ function App() {
       <BootstrapContext.Provider
         value={{ blue, green, red, orange, lightblue, white }}
       >
-        <div className="container text-bg-dark p-3">
+        <div className="container p-3">
           <NavBar />
-          <div className={`${blue}`}>
+          <div
+            style={{
+              backgroundColor: "#ebe6e0",
+              color: "#4c7766",
+              border: "1px solid #4c7766",
+              borderRadius: "10px",
+              padding: "2px",
+            }}
+          >
             <Routes>
               <Route path="/" element={<DisplayMain />} />
               <Route path="main" element={<DisplayMain />} />

@@ -7,7 +7,10 @@ const DisplayCoin = (props) => {
     useContext(BootstrapContext);
 
   return (
-    <div className={`${green} p-2 rounded`}>
+    <div
+      className={`p-3 rounded`}
+      style={{ backgroundColor: "#4c7766", color: "#ebe6e0" }}
+    >
       <div>{props.pair}</div>
       <div>${props.price}</div>
     </div>

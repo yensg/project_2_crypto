@@ -108,7 +108,12 @@ const DisplayMain = () => {
 
   return (
     <>
-      <div className="d-flex flex-column gap-2 p-2">
+      <div
+        className="d-flex flex-column gap-2 p-2"
+        style={{
+          borderRadius: "10px",
+        }}
+      >
         <Input
           handleKeyDown={handleKeyDown}
           inputFn={updateSearch}
@@ -119,8 +124,14 @@ const DisplayMain = () => {
           Search
         </Input>
         <div
-          className={`container ${orange} d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white`}
-          style={{ maxHeight: "200px" }}
+          className={`container d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white`}
+          style={{
+            maxHeight: "300px",
+            backgroundColor: "#ebe6e0",
+            color: "#4c7766",
+            border: "1px solid #4c7766",
+            borderRadius: "5px",
+          }}
         >
           {displayCoin.map((item, idx) => {
             return (
@@ -129,8 +140,14 @@ const DisplayMain = () => {
           })}
         </div>
         <div
-          className={`container ${orange} d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white`}
-          style={{ maxHeight: "400px" }}
+          className={`container d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white`}
+          style={{
+            maxHeight: "500px",
+            backgroundColor: "#ebe6e0",
+            color: "#4c7766",
+            border: "1px solid #4c7766",
+            borderRadius: "5px",
+          }}
         >
           {displayCoinSum.map((item, idx) => {
             return (
