@@ -31,7 +31,7 @@ const LineGraph = (props) => {
       },
       title: {
         display: true,
-        text: "BTCUSD Price Trend",
+        text: props.selectedPairToGraph + " Price Trend",
         font: {
           size: 18,
         },

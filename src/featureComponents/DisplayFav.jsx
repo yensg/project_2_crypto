@@ -1,18 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DisplayFavCoin from "./DisplayFavCoin";
 import BootstrapContext from "../context/bootstrap-context";
 import Button from "../functionComponents/Button";
 import DisplayGraph from "./DisplayGraph";
 
+// Favourite Page
 const DisplayFav = () => {
   const { blue, green, red, orange, lightblue, white } =
     useContext(BootstrapContext);
   const queryClient = useQueryClient();
-  //   const [fav, setFav] = useState([]);
   const symbolRef = useRef();
   const qtyRef = useRef();
   const targetEntryPriceRef = useRef();
+  const [showGraph, setShowGraph] = useState(false);
+  const [selectedPairToGraph, setSelectedPairToGraph] = useState("0");
 
   const getData = async () => {
     const res = await fetch(import.meta.env.VITE_AIRTABLE, {
@@ -60,6 +62,14 @@ const DisplayFav = () => {
     },
   });
 
+  useEffect(() => {
+    if (selectedPairToGraph === "0") {
+      setShowGraph(false);
+    } else {
+      setShowGraph(true);
+    }
+  }, [selectedPairToGraph]);
+
   return (
     <>
       <h4>Portfolio Assumption</h4>
@@ -90,6 +100,21 @@ const DisplayFav = () => {
           <Button buttonFn={mutation.mutate}>Add</Button>
         </div>
       </div>
+      <div className="container">
+        <label>Show Graph</label>
+        <select
+          onChange={(event) => {
+            setSelectedPairToGraph(event.target.value);
+          }}
+          value={selectedPairToGraph}
+        >
+          <option value="0">Select Coin</option>
+          {queryAirTable.isSuccess &&
+            queryAirTable.data.records.map((item) => {
+              return <option key={item.id}>{item.fields.pair}</option>;
+            })}
+        </select>
+      </div>
       <br />
       <div className="container">
         <div
@@ -101,34 +126,8 @@ const DisplayFav = () => {
           <div className="col-sm-2">Current Value</div>
           <div className="col-sm-2">Target Price</div>
           <div className="col-sm-2">Target Value</div>
-          <Button>Update</Button>
-          <Button>Delete</Button>
+          <div className="col-sm-2"></div>
         </div>
-        {/* <div className={`d-flex  ${lightblue} justify-content-between`}>
-          <input
-            className="col-sm-1"
-            type="text"
-            ref={symbolRef}
-            placeholder="Symbol"
-          ></input>
-          <input
-            className="col-sm-1"
-            type="text"
-            ref={qtyRef}
-            placeholder="Qty"
-          ></input>
-          <div className="col-sm-2">Price</div>
-          <div className="col-sm-2">Current Value</div>
-          <input
-            className="col-sm-2"
-            type="text"
-            ref={targetEntryPriceRef}
-            placeholder="Target Entry Price"
-          ></input>
-          <div className="col-sm-2">Target Value</div>
-          <Button buttonFn={mutation.mutate}>Add</Button>
-          <div className="col-sm-1"></div>
-        </div> */}
       </div>
       <div className={`container gap-2`}>
         {queryAirTable.isSuccess &&
@@ -138,7 +137,7 @@ const DisplayFav = () => {
             );
           })}
       </div>
-      <DisplayGraph />
+      {showGraph && <DisplayGraph selectedPairToGraph={selectedPairToGraph} />}
     </>
   );
 };

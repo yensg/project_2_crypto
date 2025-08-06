@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Input from "../functionComponents/Input";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import DisplayCoin from "./DisplayCoin";
@@ -16,23 +16,24 @@ const DisplayMain = () => {
   const [coinData, setCoinData] = useState([]);
   const [displayCoin, setDisplayCoin] = useState([]);
   const [displayCoinSum, setDisplayCoinSum] = useState([]);
+  const displayCoinNames = useRef([]);
+  const [searchHappened, setSearchHappened] = useState(false);
 
   const updateSearch = (event) => {
     setSearch(event.target.value);
   };
-
   const clickSearch = () => {
     const result = coinData.filter((item) => {
       return item.pair.toLowerCase().includes(search.toLowerCase());
     });
     setDisplayCoin(result);
     setSearch("");
+    // for
+    setSearchHappened(true);
   };
-
   const clickClear = () => {
     setDisplayCoin(coinData);
   };
-
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       clickSearch();
@@ -57,69 +58,53 @@ const DisplayMain = () => {
     }
   }, [query.data, query.isSuccess]);
 
-  //   const displayCoinNames = displayCoin.map((item) => item.pair);
-
-  const displayCoinNames = [
-    "ETHBTC",
-    "BTCUSD",
-    "LTCBTC",
-    "LINKBTC",
-    "BTCSGD",
-    "BTCUSDT",
-    "BTCGBP",
-    "BTCEUR",
-    "BTCGUSDPERP",
-    "BTCGUSD",
-    "DOGEBTC",
-    "SOLBTC",
-  ];
+  // put in root of component is very messy because we dont know when will it run. use useState or useRef.
+  // const displayCoinNames = displayCoin.map((item) => item.pair);
+  useEffect(() => {
+    // To get the searched Coins' names and get coinSummaryData
+    displayCoinNames.current = displayCoin.map((item) => item.pair);
+    console.log(displayCoinNames.current);
+  }, [displayCoin]);
 
   const getCoinSumData = async () => {
-    // if (search) {
-    let arrOfCoinSumData = [];
-    for (const eachCoinName of displayCoinNames) {
-      const res = await fetch(
-        import.meta.env.VITE_SERVER + "/v2/ticker/" + eachCoinName
-      );
-      if (!res.ok) {
-        throw new Error("error getting data");
+    // to fetch individual coinSummaryData
+    const arrOfCoinSumData = [];
+    for (const eachCoinName of displayCoinNames.current) {
+      if (eachCoinName !== "EFILUSD" && eachCoinName !== "EURUSDC") {
+        console.warn(eachCoinName);
+        const res = await fetch(
+          import.meta.env.VITE_SERVER + "/v2/ticker/" + eachCoinName
+        );
+        if (!res.ok) {
+          throw new Error("error getting data");
+        }
+        const data = await res.json();
+        arrOfCoinSumData.push(data);
       }
-      const data = await res.json();
-      arrOfCoinSumData.push(data);
     }
     return arrOfCoinSumData;
   };
-  //   };
   const queryCoinSumData = useQuery({
-    queryKey: ["coinsSum"],
+    queryKey: ["coinsSum", displayCoin],
     queryFn: getCoinSumData,
+    // not run on mount
+    enabled: false,
   });
-
   useEffect(() => {
     if (queryCoinSumData.isSuccess) {
       setDisplayCoinSum(queryCoinSumData.data);
     }
   }, [queryCoinSumData.data, queryCoinSumData.isSuccess]);
 
-  //    const getCoinSumData = async () => {
-  //     const res = await fetch(
-  //       import.meta.env.VITE_SERVER + "/v2/ticker/" + displayCoinNames
-  //     );
-  //     if (!res.ok) {
-  //       throw new Error("error getting data");
-  //     }
-  //     return await res.json();
-  //   };
-  //   const queryCoinSumData = useQuery({
-  //     queryKey: ["coinsSum"],
-  //     queryFn: getCoinSumData,
-  //   });
-
-  //   useEffect(() => {
-  //     if (queryCoinSumData.isSuccess) {
-  //       setDisplayCoinSum(queryCoinSumData.data);
-  //     }
-  //   }, [queryCoinSumData.data, queryCoinSumData.isSuccess]);
+  useEffect(() => {
+    if (searchHappened) {
+      queryCoinSumData.refetch();
+      // queryClient.invalidateQueries(["coinsSum"]);
+      setSearchHappened(false);
+    }
+  }, [displayCoin]);
+  // how to use useMutation()? as it requires a POST, UPDATE or DELETE.
+  // we cannot as we didnt run on mount queryClient.invalidateQueries(["coinsSum"]);
 
   return (
     <>
@@ -133,9 +118,6 @@ const DisplayMain = () => {
         >
           Search
         </Input>
-        {/* {JSON.stringify(result)} */}
-        {/* {JSON.stringify(displayCoinNames)} */}
-        {/* {JSON.stringify(displayCoinSum)} */}
         <div
           className={`container ${orange} d-flex flex-wrap gap-2 p-2 overflow-auto scroll-white`}
           style={{ maxHeight: "200px" }}
@@ -164,11 +146,6 @@ const DisplayMain = () => {
           })}
         </div>
       </div>
-      {/* {query.isSuccess && (
-        <coinContext.Provider value={coinData}>
-          <DisplayFav />
-        </coinContext.Provider>
-      )} */}
     </>
   );
 };

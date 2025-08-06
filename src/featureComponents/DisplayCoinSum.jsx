@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import BootstrapContext from "../context/bootstrap-context";
 
+// Under DisplayMain
 const DisplayCoinSum = (props) => {
   const { blue, green, red, orange, lightblue, white } =
     useContext(BootstrapContext);
