@@ -70,6 +70,12 @@ const DisplayFavCoin = (props) => {
       } else {
         setFavCoinPrice(0);
       }
+
+      // if (!isNaN(Number(matched?.price))) {
+      //   setFavCoinPrice(Number(matched.price));
+      // } else {
+      //   setFavCoinPrice(0);
+      // }
       // this is not efficient because we always want to run the closes to the numbers.
       // if (matched === undefined && !Number(matched.price)) {
       //   setFavCoinPrice(0);
