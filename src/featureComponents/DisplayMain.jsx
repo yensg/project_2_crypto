@@ -9,8 +9,6 @@ import coinContext from "../context/coin-context";
 import DisplayFav from "./DisplayFav";
 
 const DisplayMain = () => {
-  const { blue, green, red, orange, lightblue, white } =
-    useContext(BootstrapContext);
   const queryClient = useQueryClient();
   const [search, setSearch] = useState("");
   const [coinData, setCoinData] = useState([]);
@@ -28,7 +26,6 @@ const DisplayMain = () => {
     });
     setDisplayCoin(result);
     setSearch("");
-    // for
     setSearchHappened(true);
   };
   const clickClear = () => {
@@ -63,9 +60,7 @@ const DisplayMain = () => {
   useEffect(() => {
     // To get the searched Coins' names and get coinSummaryData
     displayCoinNames.current = displayCoin.map((item) => item.pair);
-    console.log(displayCoinNames.current);
   }, [displayCoin]);
-
   const getCoinSumData = async () => {
     // to fetch individual coinSummaryData
     const arrOfCoinSumData = [];
@@ -95,7 +90,6 @@ const DisplayMain = () => {
       setDisplayCoinSum(queryCoinSumData.data);
     }
   }, [queryCoinSumData.data, queryCoinSumData.isSuccess]);
-
   useEffect(() => {
     if (searchHappened) {
       queryCoinSumData.refetch();
@@ -128,14 +122,19 @@ const DisplayMain = () => {
           style={{
             maxHeight: "300px",
             backgroundColor: "#ebe6e0",
-            color: "#4c7766",
-            border: "1px solid #4c7766",
+            color: "#466D5B",
+            border: "1px solid #466D5B",
             borderRadius: "5px",
           }}
         >
           {displayCoin.map((item, idx) => {
             return (
-              <DisplayCoin pair={item.pair} price={item.price} key={idx} />
+              <DisplayCoin
+                pair={item.pair}
+                price={item.price}
+                percentChange24h={item.percentChange24h}
+                key={idx}
+              />
             );
           })}
         </div>
@@ -144,8 +143,8 @@ const DisplayMain = () => {
           style={{
             maxHeight: "300px",
             backgroundColor: "#ebe6e0",
-            color: "#4c7766",
-            border: "1px solid #4c7766",
+            color: "#466D5B",
+            border: "1px solid #466D5B",
             borderRadius: "5px",
           }}
         >

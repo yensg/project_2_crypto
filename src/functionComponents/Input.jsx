@@ -2,14 +2,11 @@ import React, { useContext } from "react";
 import BootstrapContext from "../context/bootstrap-context";
 
 const Input = (props) => {
-  const { blue, green, red, orange, lightblue, white } =
-    useContext(BootstrapContext);
-
   return (
     <div
       className="d-flex justify-content-between align-items-center"
       style={{
-        backgroundColor: "#4c7766",
+        backgroundColor: "#466D5B",
         color: "#ebe6e0",
         borderRadius: "8px",
         padding: "5px",
@@ -36,7 +33,7 @@ const Input = (props) => {
       <div className="col-sm-1"></div>
       <button
         className="col-sm-1 btn btn-sm d-flex justify-content-center align-items-center btn-3d"
-        style={{ backgroundColor: "#ebe6e0", color: "#4c7766" }}
+        style={{ backgroundColor: "#ebe6e0", color: "#466D5B" }}
         onClick={props.buttonFn}
       >
         Submit
@@ -44,7 +41,7 @@ const Input = (props) => {
 
       <button
         className="col-sm-1 btn btn-sm d-flex justify-content-center align-items-center btn-3d"
-        style={{ backgroundColor: "#ebe6e0", color: "#4c7766" }}
+        style={{ backgroundColor: "#ebe6e0", color: "#466D5B" }}
         onClick={props.clickClear}
       >
         Clear

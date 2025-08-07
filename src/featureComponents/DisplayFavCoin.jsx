@@ -7,8 +7,7 @@ import Overlay from "./ModalFavCoin";
 
 // Under DisplayFav, individual FavCoin level
 const DisplayFavCoin = (props) => {
-  const { blue, green, red, orange, lightblue, white } =
-    useContext(BootstrapContext);
+  const { currencyFormatter } = useContext(BootstrapContext);
   const queryClient = useQueryClient();
   // const coinData = queryClient.getQueryData(["coins"]);
   const [showModal, setShowModal] = useState(false);
@@ -87,36 +86,45 @@ const DisplayFavCoin = (props) => {
 
   // Update FavCoin
   const updateShowModal = () => {
-    return !showGraph;
+    setShowModal(!showModal);
   };
 
   return (
-    <>
+    <div className="mb-1">
       {showModal && <Overlay updateShowModal={updateShowModal} id={props.id} />}
       <div
         className={`d-flex  justify-content-between align-items-baseline`}
         style={{
           backgroundColor: "#ebe6e0",
-          color: "#4c7766",
+          color: "#466D5B",
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+          fontSize: "0.85rem",
+          padding: "4px",
+          borderRadius: "4px",
         }}
       >
         <div className="col-sm-1">{props.fields.pair}</div>
         <div className="col-sm-1">{props.fields.qty}</div>
-        <div className="col-sm-2">{favCoinPrice}</div>
+        <div className="col-sm-2">{currencyFormatter(favCoinPrice)}</div>
         <div className="col-sm-2">
-          {favCoinPrice && props.fields.qty && favCoinPrice * props.fields.qty}
+          {currencyFormatter(
+            favCoinPrice && props.fields.qty && favCoinPrice * props.fields.qty
+          )}
         </div>
-        <div className="col-sm-2">{props.fields.targetEntryPrice}</div>
         <div className="col-sm-2">
-          {props.fields.targetEntryPrice &&
-            props.fields.qty &&
-            props.fields.targetEntryPrice * props.fields.qty}
+          {currencyFormatter(props.fields.targetEntryPrice)}
         </div>
-        <Button butonFn={updateShowModal}>Update</Button>
+        <div className="col-sm-2">
+          {currencyFormatter(
+            props.fields.targetEntryPrice &&
+              props.fields.qty &&
+              props.fields.targetEntryPrice * props.fields.qty
+          )}
+        </div>
+        <Button buttonFn={updateShowModal}>Update</Button>
         <Button buttonFn={mutation.mutate}>Delete</Button>
       </div>
-    </>
+    </div>
   );
 };
 

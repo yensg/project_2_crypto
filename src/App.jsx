@@ -16,10 +16,35 @@ function App() {
   const orange = "border border-warning";
   const lightblue = "border border-info";
   const white = "border border-white";
+  const currencyFormatter = (amount) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 10,
+      minimumFractionDigits: 2,
+    }).format(amount);
+  };
+
+  const formattedPercentage = (percentage) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "percent",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(percentage);
+  };
   return (
     <QueryClientProvider client={queryClient}>
       <BootstrapContext.Provider
-        value={{ blue, green, red, orange, lightblue, white }}
+        value={{
+          blue,
+          green,
+          red,
+          orange,
+          lightblue,
+          white,
+          currencyFormatter,
+          formattedPercentage,
+        }}
       >
         <div className="container p-3">
           <div className="d-flex justify-content-between align-items-center">

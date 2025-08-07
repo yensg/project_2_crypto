@@ -7,8 +7,7 @@ import DisplayGraph from "./DisplayGraph";
 
 // Favourite Page
 const DisplayFav = () => {
-  const { blue, green, red, orange, lightblue, white } =
-    useContext(BootstrapContext);
+  const { currencyFormatter } = useContext(BootstrapContext);
   const queryClient = useQueryClient();
   const symbolRef = useRef();
   const qtyRef = useRef();
@@ -78,7 +77,7 @@ const DisplayFav = () => {
         <div
           className={`d-flex  align-items-baseline justify-content-between`}
           style={{
-            backgroundColor: "#4c7766",
+            backgroundColor: "#466D5B",
             color: "#ebe6e0",
             borderRadius: "8px",
             padding: "5px",
@@ -111,7 +110,7 @@ const DisplayFav = () => {
             ref={qtyRef}
             placeholder="Qty"
           ></input>
-          <label className="me-2 mb-0 fw-semibold">Target Price: </label>
+          <label className="me-2 mb-0 fw-semibold">Entry Price: </label>
           <input
             className="col-sm-2"
             style={{
@@ -122,7 +121,7 @@ const DisplayFav = () => {
             }}
             type="text"
             ref={targetEntryPriceRef}
-            placeholder="Target Price"
+            placeholder="Entry Price"
           ></input>
           <Button buttonFn={mutation.mutate}>Add</Button>
         </div>
@@ -153,9 +152,9 @@ const DisplayFav = () => {
       <br />
       <div className="container">
         <div
-          className={`d-flex  ${lightblue} justify-content-between align-items-baseline`}
+          className={`d-flex justify-content-between align-items-baseline`}
           style={{
-            backgroundColor: "#4c7766",
+            backgroundColor: "#466D5B",
             color: "#ebe6e0",
             borderRadius: "8px",
             padding: "5px",
@@ -166,8 +165,8 @@ const DisplayFav = () => {
           <div className="col-sm-1">Qty</div>
           <div className="col-sm-2">Price</div>
           <div className="col-sm-2">Current Value</div>
-          <div className="col-sm-2">Target Price</div>
-          <div className="col-sm-2">Target Value</div>
+          <div className="col-sm-2">Entry Price</div>
+          <div className="col-sm-2">Entry Value</div>
           <div className="col-sm-2"></div>
         </div>
       </div>
@@ -179,7 +178,11 @@ const DisplayFav = () => {
             );
           })}
       </div>
-      {showGraph && <DisplayGraph selectedPairToGraph={selectedPairToGraph} />}
+      {showGraph && (
+        <div className="container-fluid px-0">
+          <DisplayGraph selectedPairToGraph={selectedPairToGraph} />
+        </div>
+      )}
     </>
   );
 };

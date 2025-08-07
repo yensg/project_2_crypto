@@ -20,7 +20,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import { lineChartData } from "./dataset";
+// import { lineChartData } from "./dataset";
 
 const LineGraph = (props) => {
   const options = {
@@ -37,6 +37,7 @@ const LineGraph = (props) => {
         },
       },
     },
+    // scales: { x: { reverse: true, backgroundColor: "purple" } },
   };
   //   const data = {};
 

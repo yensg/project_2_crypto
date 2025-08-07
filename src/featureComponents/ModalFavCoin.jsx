@@ -43,35 +43,56 @@ const ModalFavCoin = (props) => {
 
   return (
     <div className={styles.backdrop}>
-      <div className={styles.modal}>
+      <div
+        className={`container d-flex flex-column justify-content-center ${styles.modal}`}
+      >
         <div className="row">
+          <label className="col-sm-3 fw-semibold">Symbol:</label>
           <input
-            className="col-sm-1"
+            className="col-sm-8"
             type="text"
             ref={symbolRef}
             placeholder="Symbol"
           ></input>
         </div>
         <div className="row">
+          <label className="col-sm-3 fw-semibold">Quantity:</label>
           <input
-            className="col-sm-1"
+            className="col-sm-8"
             type="text"
             ref={qtyRef}
             placeholder="Qty"
           ></input>
         </div>
         <div className="row">
+          <label className="col-sm-3 fw-semibold">Entry Price:</label>
           <input
-            className="col-sm-2"
+            className="col-sm-8"
             type="text"
             ref={targetEntryPriceRef}
-            placeholder="Target Entry Price"
+            placeholder="Entry Price"
           ></input>
-          <div className="row">
-            <Button buttonFn={mutation.mutate}>Add</Button>
+          <div className="container d-flex justify-content-end">
+            <button
+              id="button"
+              className="col-sm-4 btn btn-sm btn-3d"
+              style={{ backgroundColor: "#466D5B", color: "#ebe6e0" }}
+              onClick={mutation.mutate}
+            >
+              Add
+            </button>
+            <div className="p-2"></div>
           </div>
-          <div className="row">
-            <Button buttonFn={props.updateShowModal}>Cancel</Button>
+          <div className="container d-flex justify-content-end">
+            <button
+              id="button"
+              className="col-sm-4 btn btn-sm btn-3d"
+              style={{ backgroundColor: "#466D5B", color: "#ebe6e0" }}
+              onClick={props.updateShowModal}
+            >
+              Cancel
+            </button>
+            <div className="p-2"></div>
           </div>
         </div>
       </div>
