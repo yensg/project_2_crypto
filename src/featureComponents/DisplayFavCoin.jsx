@@ -41,6 +41,7 @@ const DisplayFavCoin = (props) => {
   const query = useQuery({
     queryKey: ["favCoins"],
     queryFn: getData,
+    staleTime: 0,
   });
   useEffect(() => {
     if (query.isSuccess) {
@@ -91,7 +92,13 @@ const DisplayFavCoin = (props) => {
 
   return (
     <div className="mb-1">
-      {showModal && <Overlay updateShowModal={updateShowModal} id={props.id} />}
+      {showModal && (
+        <Overlay
+          // query={query}
+          updateShowModal={updateShowModal}
+          id={props.id}
+        />
+      )}
       <div
         className={`d-flex  justify-content-between align-items-baseline`}
         style={{
@@ -122,7 +129,7 @@ const DisplayFavCoin = (props) => {
           )}
         </div>
         <Button buttonFn={updateShowModal}>Update</Button>
-        <Button buttonFn={mutation.mutate}>Delete</Button>
+        <Button buttonFn={() => mutation.mutate()}>Delete</Button>
       </div>
     </div>
   );

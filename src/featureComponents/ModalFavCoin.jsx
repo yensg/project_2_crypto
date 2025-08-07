@@ -1,5 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React, { useRef } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import React, { useRef, useState } from "react";
 import styles from "./ModalFavCoin.module.css";
 import ReactDOM from "react-dom";
 import Button from "../functionComponents/Button";
@@ -9,6 +9,7 @@ const ModalFavCoin = (props) => {
   const symbolRef = useRef();
   const qtyRef = useRef();
   const targetEntryPriceRef = useRef();
+  // const [render, setRender] = useState(false);
 
   const updateData = async () => {
     const res = await fetch(import.meta.env.VITE_AIRTABLE + "/" + props.id, {
@@ -38,6 +39,12 @@ const ModalFavCoin = (props) => {
         (targetEntryPriceRef.current.value = ""),
         props.updateShowModal();
       queryClient.invalidateQueries(["airTable"]);
+      // queryAirTable.refetch(["airTable"]);
+      queryClient.invalidateQueries(["favCoins"]); // Qn: cant refresh
+      // queryClient.refetchQueries(["favCoins"]);
+      // query.refetch(["favCoins"]);
+      // props.query.refetch(["favCoins"]);
+      // setRender(true);
     },
   });
 
@@ -104,7 +111,11 @@ const Overlay = (props) => {
   return (
     <div>
       {ReactDOM.createPortal(
-        <ModalFavCoin updateShowModal={props.updateShowModal} id={props.id} />,
+        <ModalFavCoin
+          // query={props.query}
+          updateShowModal={props.updateShowModal}
+          id={props.id}
+        />,
         document.querySelector("#modal-root")
       )}
     </div>
