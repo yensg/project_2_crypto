@@ -148,7 +148,7 @@ const DisplayMain = () => {
             borderRadius: "5px",
           }}
         >
-          {queryCoinSumData.isLoading && "is Loading..."}
+          {queryCoinSumData.isLoading && "Is Loading..."}
           {displayCoinSum.map((item, idx) => {
             return (
               <DisplayCoinSum
