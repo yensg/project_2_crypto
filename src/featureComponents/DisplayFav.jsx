@@ -171,6 +171,7 @@ const DisplayFav = () => {
         </div>
       </div>
       <div className={`container gap-2`}>
+        {queryAirTable.isLoading && "Is loading..."}
         {queryAirTable.isSuccess &&
           queryAirTable.data.records.map((item) => {
             return (
