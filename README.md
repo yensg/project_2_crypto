@@ -103,12 +103,15 @@
 
 - setup `Input.jsx` for search function
   - This is the search logic`item.pair.toLowerCase().includes(search.toLowerCase())`
-  - Also to return this to `setDisplayCoin` - This is `controlled form`
+  - Also to return this to `setDisplayCoin`
+  - This is `controlled form`
     ![DisplayCoin](asset/displayCoin.png)
-- setup `DisplayCoin.jsx` - fetch and manage data via TanStack
-  - `setState()` - for `coinData` to store as original data
-  - and for `displayCoin` to display this data
-    ![DisplayCoinSum](asset/displayCoinSum.png)
+- setup `DisplayCoin.jsx`
+  - fetch and manage data via TanStack
+  - `setState()`
+    - for `coinData` to store as original data
+    - and for `displayCoin` to display this data
+      ![DisplayCoinSum](asset/displayCoinSum.png)
 - setup `DisplayCoinSum.jsx`
   - As the API is only able to call one coin at a time
     - we need to iterate the fetch of an array of selected coins from our `displayCoin`
