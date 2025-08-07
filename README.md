@@ -133,8 +133,9 @@
     - And refetch `getData` via `queryClient.invalidateQueries(["airTable"])`
     - And clear the `useRef()` current values.
       ![DisplayFavCoin](asset/DisplayFavCoin.png)
-- setup `DisplayFavCoin.jsx` - Run `getData()` to fetch and manipulate data via `TanStack`
-  ![DisplayGraphOption](asset/DisplayGraph.png)
+- setup `DisplayFavCoin.jsx`
+  - Run `getData()` to fetch and manipulate data via `TanStack`
+    ![DisplayGraphOption](asset/DisplayGraph.png)
 - setup `<select>` with all the coins stored in the `Airtable` as options to show `DisplayGraph.jsx` via `chart.js`
 
 ### DisplayFavCoin.jsx
