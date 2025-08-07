@@ -101,10 +101,14 @@
 
 ![Search](asset/search.png)
 
-- setup `Input.jsx` for search function - This is the search logic`item.pair.toLowerCase().includes(search.toLowerCase())` - Also to return this to `setDisplayCoin` - This is `controlled form`
-  ![DisplayCoin](asset/displayCoin.png)
-- setup `DisplayCoin.jsx` - fetch and manage data via TanStack - `setState()` - for `coinData` to store as original data - and for `displayCoin` to display this data
-  ![DisplayCoinSum](asset/displayCoinSum.png)
+- setup `Input.jsx` for search function
+  - This is the search logic`item.pair.toLowerCase().includes(search.toLowerCase())`
+  - Also to return this to `setDisplayCoin` - This is `controlled form`
+    ![DisplayCoin](asset/displayCoin.png)
+- setup `DisplayCoin.jsx` - fetch and manage data via TanStack
+  - `setState()` - for `coinData` to store as original data
+  - and for `displayCoin` to display this data
+    ![DisplayCoinSum](asset/displayCoinSum.png)
 - setup `DisplayCoinSum.jsx`
   - As the API is only able to call one coin at a time
     - we need to iterate the fetch of an array of selected coins from our `displayCoin`
@@ -117,8 +121,15 @@
 
 ![Add Favourite Coin](asset/addFavCoin.png)
 
-- setup `addData` function to `POST` data to `Airtable` server - uses 3 `useRef()` - `const symbolRef = useRef();` - `const qtyRef = useRef();` - `const targetEntryPriceRef = useRef();` - Upon clicking `Add` will send these in the `body.field.pair/qty/targetEntryPair` via `useMutation()` - And refetch `getData` via `queryClient.invalidateQueries(["airTable"])` - And clear the `useRef()` current values.
-  ![DisplayFavCoin](asset/DisplayFavCoin.png)
+- setup `addData` function to `POST` data to `Airtable` server
+  - uses 3 `useRef()`
+    - `const symbolRef = useRef();`
+    - `const qtyRef = useRef();`
+    - `const targetEntryPriceRef = useRef();`
+  - Upon clicking `Add` will send these in the `body.field.pair/qty/targetEntryPair` via `useMutation()`
+    - And refetch `getData` via `queryClient.invalidateQueries(["airTable"])`
+    - And clear the `useRef()` current values.
+      ![DisplayFavCoin](asset/DisplayFavCoin.png)
 - setup `DisplayFavCoin.jsx` - Run `getData()` to fetch and manipulate data via `TanStack`
   ![DisplayGraphOption](asset/DisplayGraph.png)
 - setup `<select>` with all the coins stored in the `Airtable` as options to show `DisplayGraph.jsx` via `chart.js`
