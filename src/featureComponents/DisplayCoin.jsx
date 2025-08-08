@@ -21,9 +21,9 @@ const DisplayCoin = (props) => {
         style={{
           color:
             props.percentChange24h > 0
-              ? "#50C878"
+              ? "#E6F4ED"
               : props.percentChange24h < 0
-              ? "#E63946"
+              ? "yellow"
               : "#f4f0ec",
         }}
       >
